@@ -1,0 +1,54 @@
+<ion-header class="mobile-header" class="ion-no-border ion-hide-md-up">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+<ion-menu-button menu="myMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+
+    <ion-avatar slot="end"  style="height: 40px;width: 40px;" class="ion-margin">
+      <img src="assets/img/binay-code.svg">
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+<ion-row class="header ion-align-items-center">
+  <ion-col size="2">
+    <ion-avatar slot="end"  style="height: 40px;width: 40px;" class="ion-margin">
+      <img src="assets/img/binay-code.svg">
+    </ion-avatar>
+ 
+  </ion-col>
+  <ion-col size="8" class="ion-text-left">
+
+<ion-button #inicioBtn (mouseenter)="dropdown=true" (mouseleave)="hideDropdown($event)" fill="clear" class="dropdown-btn" color="dark" routerLink="/" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
+  Home
+
+</ion-button>
+
+
+<div *ngIf="dropdown" class="dropdown" (mouseleave)="dropdown=false" #dropdownbox>
+
+
+<ion-item button  (click)="dropdown = false" lines="none"  routerLink="/" [queryParams]="{value:'today'}">
+  <ion-label>Reservaciones del dia</ion-label>
+</ion-item>
+
+<ion-item button  (click)="dropdown=false" lines="none"  routerLink="/" [queryParams]="{value:'month'}">
+  <ion-label>Resrevaciones del mes</ion-label>
+</ion-item>
+
+</div>
+
+<ion-button fill="clear" color="dark" routerLink="/lista-canchas" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
+  Canchas
+ </ion-button>
+
+
+  </ion-col>
+  <ion-col size="2">
+    
+    <ion-button   fill="clear"  color="dark">
+    <ion-icon slot="icon-only" name="cart"></ion-icon>
+    </ion-button>
+  </ion-col>
+
+</ion-row>

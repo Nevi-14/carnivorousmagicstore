@@ -1,0 +1,71 @@
+<ion-header class="mobile-header" class="ion-no-border ion-hide-md-up">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+<ion-menu-button menu="myMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+
+<ion-buttons slot="end">
+  <ion-button (click)="shoppingCart()">
+    <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+  </ion-button>
+</ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-row class="header ion-align-items-center">
+  <ion-col size="2">
+    <ion-avatar  style="height: 30px;width: 30px;" class="ion-margin">
+      <img src="assets/img/store.svg">
+    </ion-avatar>
+ 
+  </ion-col>
+  <ion-col size="8" class="ion-text-left">
+
+    <ion-button fill="clear" color="dark" routerLink="/" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
+      Home
+     </ion-button>
+
+
+<ion-button #inicioBtn (mouseenter)="dropdown=true" (mouseleave)="hideDropdown($event)" fill="clear" class="dropdown-btn" color="dark" routerLink="/products" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
+  Products
+
+  <ion-icon slot="end" [name]="dropdown ? 'chevron-down' : 'chevron-up'"></ion-icon>
+</ion-button>
+
+
+<div *ngIf="dropdown" class="dropdown" (mouseleave)="dropdown=false" #dropdownbox>
+
+
+<ion-item button  (click)="dropdown = false" lines="none"  routerLink="/products" [queryParams]="{category:'popular'}">
+  <ion-label>Popular</ion-label>
+</ion-item>
+<ion-item button  (click)="dropdown = false" lines="none"  routerLink="/products" [queryParams]="{category:'cloth'}">
+  <ion-label>Cloth</ion-label>
+</ion-item>
+<ion-item button  (click)="dropdown = false" lines="none"  routerLink="/products" [queryParams]="{category:'gadgets'}">
+  <ion-label>Gadgets</ion-label>
+</ion-item>
+
+</div>
+
+<ion-button fill="clear" color="dark" routerLink="/users" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
+  Users
+ </ion-button>
+
+ <ion-button fill="clear" color="dark" routerLink="/orders" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
+  Orders
+ </ion-button>
+
+ <ion-button fill="clear" color="dark" routerLink="/track-order" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
+  Track Order
+ </ion-button>
+
+
+<ion-button fill="clear" color="dark" routerLink="/about" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
+  About
+ </ion-button>
+
+
+  </ion-col>
+
+</ion-row>
