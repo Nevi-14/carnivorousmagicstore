@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ModalController } from '@ionic/angular';
+import { IonSlides, ModalController } from '@ionic/angular';
 import { ImageModalPage } from '../image-modal/image-modal.page';
 
 @Component({
@@ -10,12 +10,13 @@ import { ImageModalPage } from '../image-modal/image-modal.page';
   styleUrls: ['./store.page.scss'],
 })
 export class StorePage implements OnInit {
-
+  @ViewChild(IonSlides) slides: IonSlides;
+ 
   products: Observable<any>;
   sliderOpts = {
     zoom: false,
-    slidesPerView: 5,
-    spaceBetween: 20,
+    slidesPerView: 4,
+    spaceBetween: 10,
     centeredSlides: false
   };
 
@@ -28,7 +29,7 @@ export class StorePage implements OnInit {
 
     this.products = this.http.get('https://fakestoreapi.com/products');
   }
-
+F
   async openPreview(img) {
     const modal = await this.modalCtrl.create({
       component: ImageModalPage,
@@ -38,5 +39,28 @@ export class StorePage implements OnInit {
       }
     });
     modal.present();
+  }
+  slidePrev() {
+    this.slides.slidePrev();
+  }
+  slideNext() {
+    
+    this.slides.slideNext();
+  }
+  @HostListener('window:resize',['$event'])
+
+  private onResize(event){
+
+    const newWidth = event.target.innerWidth;
+  if (newWidth < 600 ){
+//this.sliderOpts.slidesPerView = 1;
+// not woking
+
+  }else{
+   // this.sliderOpts.slidesPerView = 5;
+
+  }
+  
+
   }
 }

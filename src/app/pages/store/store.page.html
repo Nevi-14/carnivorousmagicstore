@@ -2,9 +2,15 @@
 <ion-content  class="ion-padding">
   <ion-grid >
 
-    <ion-row style="margin-top: 2rem;">
+    <ion-row style="margin-top: 4rem;">
       <ion-col size="12">
+        <ion-fab-button  color="dark"   class="custom-button" style="position: absolute;top: 50%;left: 0px;z-index: 2;"  (click)="slidePrev()" >
+          <ion-icon  size="large"  name="chevron-back-outline"></ion-icon>
+        </ion-fab-button>
 
+        <ion-fab-button  color="dark" class="custom-button" style="position: absolute;top: 50%;right:0px;z-index: 2;" (click)="slideNext()" >
+          <ion-icon  size="large" name="chevron-forward-outline"></ion-icon>
+        </ion-fab-button>
         <ion-slides [options]="sliderOpts" class="preview-slides">
           <ion-slide *ngFor="let p of products | async">
 
