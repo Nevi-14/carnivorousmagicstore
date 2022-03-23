@@ -1,0 +1,28 @@
+<ion-content>
+  <ion-slides [options]="sliderOpts">
+    <ion-slide>
+      <div class="swiper-zoom-container">
+        <img src="{{img}}">
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-fab (click)="close()" vertical="top" horizontal="end" slot="fixed">
+  <ion-fab-button color="danger">
+    <ion-icon size="large"  name="close-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+ <!-- fab placed to the (vertical) center and start -->
+ <ion-fab  vertical="center" horizontal="start" slot="fixed">
+  <ion-fab-button  (click)="zoom(false)" color="primary">
+    <ion-icon name="remove-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+ <!-- fab placed to the (vertical) center and start -->
+ <ion-fab vertical="center" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="zoom(true)" color="primary">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+

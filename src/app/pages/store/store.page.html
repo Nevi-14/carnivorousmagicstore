@@ -1,22 +1,31 @@
 
-<ion-content class="ion-padding">
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="12" size-sm="6" size-md="4" size-lg="3" size-xl="2" *ngFor="let p of products | async">
-  
-        <ion-card>
-          <img [src]="p.image">
-          <ion-card-content>
-          <ion-label>
-            {{p.title}}
-            <p>
-              {{p.price | currency:'USD'}}
-            </p>
-          </ion-label>
-          </ion-card-content>
-        </ion-card>
+<ion-content  class="ion-padding">
+  <ion-grid >
+
+    <ion-row style="margin-top: 2rem;">
+      <ion-col size="12">
+
+        <ion-slides [options]="sliderOpts" class="preview-slides">
+          <ion-slide *ngFor="let p of products | async">
+
+            <ion-card mode="ios" class="ion-text-center">
+              <img class="card-img" [src]="p.image" tappable (click)="openPreview(p.image)">
+              <ion-card-content>
+              <ion-label>
+                {{p.title.substring(0,15)}}...
+                <p>
+                  {{p.price | currency:'USD'}}
+                </p>
+              </ion-label>
+              </ion-card-content>
+            </ion-card>
+       
+          </ion-slide>
+        </ion-slides>
+
       </ion-col>
     </ion-row>
+   
   </ion-grid>
   </ion-content>
   <ion-fab   vertical="top" horizontal="end" slot="fixed">
