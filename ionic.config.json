@@ -1,0 +1,7 @@
+{
+  "name": "online-store",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
