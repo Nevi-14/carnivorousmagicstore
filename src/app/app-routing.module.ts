@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'image-modal',
     loadChildren: () => import('./pages/image-modal/image-modal.module').then( m => m.ImageModalPageModule)
   },
+  {
+    path: 'detalle-envio',
+    loadChildren: () => import('./pages/detalle-envio/detalle-envio.module').then( m => m.DetalleEnvioPageModule)
+  },
 
 ];
 

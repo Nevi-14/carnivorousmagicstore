@@ -2,16 +2,16 @@
 <ion-content  class="ion-padding">
   <ion-grid >
 
-    <ion-row style="margin-top: 4rem;">
+    <ion-row style="margin-top: 5rem;">
       <ion-col size="12">
-        <ion-fab-button  color="dark"   class="custom-button" style="position: absolute;top: 50%;left: 0px;z-index: 2;"  (click)="slidePrev()" >
+        <ion-fab-button   size="small"  color="dark"   class="custom-button" style="position: absolute;top: 50%;left: -20px;z-index: 2;"  (click)="slidePrev()" >
           <ion-icon  size="large"  name="chevron-back-outline"></ion-icon>
         </ion-fab-button>
 
-        <ion-fab-button  color="dark" class="custom-button" style="position: absolute;top: 50%;right:0px;z-index: 2;" (click)="slideNext()" >
+        <ion-fab-button  size="small" color="dark" class="custom-button" style="position: absolute;top: 50%;right:-20px;z-index: 2;" (click)="slideNext()" >
           <ion-icon  size="large" name="chevron-forward-outline"></ion-icon>
         </ion-fab-button>
-        <ion-slides [options]="sliderOpts" class="preview-slides">
+        <ion-slides  mode="ios" [options]="sliderOpts" class="preview-slides">
           <ion-slide *ngFor="let p of products | async">
 
             <ion-card mode="ios" class="ion-text-center">
@@ -23,7 +23,14 @@
                   {{p.price | currency:'USD'}}
                 </p>
               </ion-label>
+       
               </ion-card-content>
+
+              <ion-fab-button  size="small" color="primary" style="position:absolute;top:0;right:0;" (click)="addToCart(p)">
+                <ion-icon  name="add-outline"></ion-icon>
+              </ion-fab-button>
+
+
             </ion-card>
        
           </ion-slide>
@@ -34,9 +41,11 @@
    
   </ion-grid>
   </ion-content>
-  <ion-fab   vertical="top" horizontal="end" slot="fixed">
+  <ion-fab (click)="shoppingCart()"  style="margin-top: 2rem;"  vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button  color="dark">
-      <ion-icon  name="cart-outline"></ion-icon>
+      <ion-icon size="large"  name="cart-outline"></ion-icon>
+      
     </ion-fab-button>
+    <ion-badge style="position: absolute;top: -10px;left: -20px;" color="primary" mode="ios">{{storeService.myShoppingCart.length}}</ion-badge>
   </ion-fab>
   

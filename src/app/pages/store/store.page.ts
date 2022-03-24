@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IonSlides, ModalController } from '@ionic/angular';
 import { ImageModalPage } from '../image-modal/image-modal.page';
+import { StoreService } from 'src/app/services/store.service';
+import { ShoppingCartPage } from '../shopping-cart/shopping-cart.page';
 
 @Component({
   selector: 'app-store',
@@ -11,25 +13,62 @@ import { ImageModalPage } from '../image-modal/image-modal.page';
 })
 export class StorePage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
- 
-  products: Observable<any>;
   sliderOpts = {
     zoom: false,
     slidesPerView: 4,
     spaceBetween: 10,
-    centeredSlides: false
+    centeredSlides: false,
+    // Responsive breakpoints
+  breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 20
+    },
+    // when window width is >= 480px
+    480: {
+      slidesPerView: 2,
+      spaceBetween: 30
+    },
+    // when window width is >= 640px
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 40
+    },
+     // when window width is >= 940px
+     940: {
+      slidesPerView: 3,
+      spaceBetween: 40
+    },
+
+     // when window width is >= 1200px
+     1300: {
+      slidesPerView: 4,
+      spaceBetween: 40
+    }
+  },
   };
+
+  products: Observable<any>;
 
   constructor(
     public http: HttpClient,
-    private modalCtrl: ModalController, private changeDetectorRef: ChangeDetectorRef
+    private modalCtrl: ModalController, private changeDetectorRef: ChangeDetectorRef,
+    public storeService:StoreService
   ) { }
 
   ngOnInit() {
 
     this.products = this.http.get('https://fakestoreapi.com/products');
   }
-F
+  async shoppingCart() {
+    const modal = await this.modalCtrl.create({
+      component: ShoppingCartPage,
+      cssClass: 'my-custom-class'
+    });
+    return await modal.present();
+  }
+
   async openPreview(img) {
     const modal = await this.modalCtrl.create({
       component: ImageModalPage,
@@ -52,15 +91,25 @@ F
   private onResize(event){
 
     const newWidth = event.target.innerWidth;
+
+  
   if (newWidth < 600 ){
-//this.sliderOpts.slidesPerView = 1;
+//this.storeService.sliderOpts.slidesPerView = 1;
 // not woking
 
   }else{
-   // this.sliderOpts.slidesPerView = 5;
+    //this.storeService.sliderOpts.slidesPerView = 5;
 
   }
-  
+ // alert([newWidth, this.storeService.sliderOpts.slidesPerView])
 
   }
+
+  addToCart(producto){
+    this.storeService.myShoppingCart.push(producto)
+    console.log(this.storeService.myShoppingCart)
+  }
+
+
+
 }

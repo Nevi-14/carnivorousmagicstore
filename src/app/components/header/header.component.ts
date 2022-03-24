@@ -37,12 +37,5 @@ public modalCtrl: ModalController
       this.dropdown = false;
     }
   }
-  async shoppingCart() {
-    const modal = await this.modalCtrl.create({
-      component: ShoppingCartPage,
-      cssClass: 'my-custom-class'
-    });
-    return await modal.present();
-  }
-
+ 
 }

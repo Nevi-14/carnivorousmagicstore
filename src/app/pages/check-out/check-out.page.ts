@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import * as  mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import { DetalleEnvioPage } from '../detalle-envio/detalle-envio.page';
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.page.html',
@@ -10,7 +12,9 @@ export class CheckOutPage implements OnInit, AfterViewInit {
   @ViewChild('mapa') divMapa!:ElementRef;
   lngLat: [number,number] = [ -84.1165100,10.0023600];
   interactive= true;
-  constructor() { }
+  constructor(
+    public modalCtrl: ModalController
+  ) { }
 
   ngOnInit() {
 
@@ -26,6 +30,13 @@ export class CheckOutPage implements OnInit, AfterViewInit {
 // MAPBOX  FUNCION
 
 
+async orderDetail() {
+  const modal = await this.modalCtrl.create({
+    component: DetalleEnvioPage,
+    cssClass: 'my-custom-class'
+  });
+  return await modal.present();
+}
 
 
 createMap(){
