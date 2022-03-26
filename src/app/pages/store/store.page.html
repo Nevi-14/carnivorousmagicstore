@@ -41,7 +41,7 @@
    
   </ion-grid>
   </ion-content>
-  <ion-fab (click)="shoppingCart()"  style="margin-top: 2rem;"  vertical="top" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="storeService.myShoppingCart.length > 0" (click)="shoppingCart()"  style="margin-top: 2rem;"  vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button  color="dark">
       <ion-icon size="large"  name="cart-outline"></ion-icon>
       

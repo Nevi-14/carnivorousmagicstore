@@ -3,6 +3,7 @@ import * as  mapboxgl from 'mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { DetalleEnvioPage } from '../detalle-envio/detalle-envio.page';
 import { ModalController } from '@ionic/angular';
+import { CheckoutIntructionsPage } from '../checkout-intructions/checkout-intructions.page';
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.page.html',
@@ -12,20 +13,28 @@ export class CheckOutPage implements OnInit, AfterViewInit {
   @ViewChild('mapa') divMapa!:ElementRef;
   lngLat: [number,number] = [ -84.1165100,10.0023600];
   interactive= true;
+  img = 'assets/img/question.svg'
+  next = 'assets/img/next.svg'
   constructor(
     public modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
 
- 
+ this.checkoutIntructions();
 
 
   }
  ngAfterViewInit() {
   this.createMap();
   }
-
+  async checkoutIntructions() {
+    const modal = await this.modalCtrl.create({
+      component: CheckoutIntructionsPage,
+      cssClass: 'my-custom-class',
+    });
+      return await modal.present();
+  }
   
 // MAPBOX  FUNCION
 
@@ -88,6 +97,7 @@ mapa.addControl(geocoder);
      geocoder.on('result', (e) =>{
 
       const { lng, lat }   = e.result.center;
+      this.lngLat = e.result.center;
       this.busquedaMapa(e.result);
 
     

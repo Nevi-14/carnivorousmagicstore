@@ -5,6 +5,7 @@ import { IonSlides, ModalController } from '@ionic/angular';
 import { ImageModalPage } from '../image-modal/image-modal.page';
 import { StoreService } from 'src/app/services/store.service';
 import { ShoppingCartPage } from '../shopping-cart/shopping-cart.page';
+import { CheckoutIntructionsPage } from '../checkout-intructions/checkout-intructions.page';
 
 @Component({
   selector: 'app-store',

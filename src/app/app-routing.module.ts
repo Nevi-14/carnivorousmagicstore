@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'detalle-envio',
     loadChildren: () => import('./pages/detalle-envio/detalle-envio.module').then( m => m.DetalleEnvioPageModule)
   },
+  {
+    path: 'checkout-intructions',
+    loadChildren: () => import('./pages/checkout-intructions/checkout-intructions.module').then( m => m.CheckoutIntructionsPageModule)
+  },
 
 ];
 

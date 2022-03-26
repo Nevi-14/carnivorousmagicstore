@@ -1,4 +1,5 @@
 
+
 <ion-content class="ion-padding">
 
   <ion-grid  style="height: 100%;">
@@ -22,10 +23,15 @@
   </ion-grid>
   
   </ion-content>
-<ion-fab (click)="orderDetail()"   vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button  color="dark">
-    <ion-icon size="large"  name="arrow-forward-outline"></ion-icon>
-    
-  </ion-fab-button>
   
-</ion-fab>
+
+  <ion-button (click)="getCurrentLocation()"  style="position: absolute; bottom: 2rem;right: 1rem;width: 100px;height: 100px" fill="clear">
+    <img  style="width: 100px;height: 100px;" [src]="next" alt="">
+  </ion-button>
+  
+
+  
+<ion-button (click)="checkoutIntructions()"  style="position: absolute; bottom: 2rem;left:  1rem; width: 100px;height: 100px;" fill="clear" >
+  <img  style="width: 100px;height: 100px;" [src]="img" alt="">
+</ion-button>
+
