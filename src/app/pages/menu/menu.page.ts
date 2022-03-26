@@ -28,7 +28,7 @@ export class MenuPage implements OnInit {
     },
     {
       title:'Store',
-      icon:'store-front-outline',
+      icon:'storefront-outline',
       path:'/store'
     },
     {

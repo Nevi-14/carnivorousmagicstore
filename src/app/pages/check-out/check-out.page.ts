@@ -4,6 +4,7 @@ import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { DetalleEnvioPage } from '../detalle-envio/detalle-envio.page';
 import { ModalController } from '@ionic/angular';
 import { CheckoutIntructionsPage } from '../checkout-intructions/checkout-intructions.page';
+import { DeliveryDetailsPage } from '../delivery-details/delivery-details.page';
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.page.html',
@@ -15,13 +16,17 @@ export class CheckOutPage implements OnInit, AfterViewInit {
   interactive= true;
   img = 'assets/img/question.svg'
   next = 'assets/img/next.svg'
+  mapa!: mapboxgl.Map;
+  stepOne = true;
+  stepTwo= false;
+  stepThree= false;
   constructor(
     public modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
 
- this.checkoutIntructions();
+ //this.checkoutIntructions();
 
 
   }
@@ -35,13 +40,20 @@ export class CheckOutPage implements OnInit, AfterViewInit {
     });
       return await modal.present();
   }
-  
+  return(){
+    this.stepTwo = false;
+    this.stepOne = true;
+  }
 // MAPBOX  FUNCION
+returnstepThree(){
+  this.stepThree = false;
+  this.stepOne = false;
+  this.stepTwo = true;
+}
 
-
-async orderDetail() {
+async deliveryDetails() {
   const modal = await this.modalCtrl.create({
-    component: DetalleEnvioPage,
+    component: DeliveryDetailsPage,
     cssClass: 'my-custom-class'
   });
   return await modal.present();
@@ -49,8 +61,12 @@ async orderDetail() {
 
 
 createMap(){
-      
-  const mapa = new mapboxgl.Map({
+  if(this.mapa){
+
+    this.mapa.remove();
+  
+    }  
+    this.mapa = new mapboxgl.Map({
     container: this.divMapa.nativeElement,
     style: 'mapbox://styles/mapbox/streets-v11',
     center:this.lngLat,
@@ -62,11 +78,12 @@ createMap(){
 // Create a default Marker and add it to the map.
 const newMarker = new mapboxgl.Marker({  draggable: true})
 .setLngLat(this.lngLat)
-.addTo(mapa);
+.addTo(this.mapa);
 
 
 newMarker.on('dragend', ()=>{
 
+  this.returnstepThree();
 const { lng, lat } = newMarker!.getLngLat();
 this.lngLat  = [lng, lat];
 
@@ -75,9 +92,9 @@ this.createMap();
 
 })
 
-mapa.addControl(new mapboxgl.NavigationControl());
+this.mapa.addControl(new mapboxgl.NavigationControl());
 //mapa.addControl(new mapboxgl.FullscreenControl());
-mapa.addControl(new mapboxgl.GeolocateControl({
+this.mapa.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
       enableHighAccuracy: true
   },
@@ -89,14 +106,15 @@ mapboxgl: mapboxgl,
 placeholder: 'Buscar zona',
 })
 
-mapa.addControl(geocoder);
+this.mapa.addControl(geocoder);
 
 
 
 
      geocoder.on('result', (e) =>{
-
-      const { lng, lat }   = e.result.center;
+      this.stepOne = false;
+      this.stepTwo = false;
+      this.stepThree = true;
       this.lngLat = e.result.center;
       this.busquedaMapa(e.result);
 
@@ -105,8 +123,8 @@ mapa.addControl(geocoder);
     })
 
 
-    mapa.on('load', () => {
-      mapa.resize();
+    this.mapa.on('load', () => {
+      this.mapa.resize();
     });
 
 }
@@ -114,6 +132,13 @@ busquedaMapa(resultado) {
   this.createMap();
  console.log(resultado)
  
+ }
+
+ setgetCurrentLocation(){
+   this.stepOne = false;
+   this.stepTwo = true;
+this.getCurrentLocation();
+
  }
  getCurrentLocation(){
 

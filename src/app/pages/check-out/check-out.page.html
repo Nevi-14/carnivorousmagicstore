@@ -11,8 +11,45 @@
   <div  #mapa  [ngStyle]="{
     'height': '100%',
     'width': '100%'
-  }" class="mapa"></div>
+  }" class="mapa">
+
+  <ion-list style="position: absolute;z-index: 1;top: 6rem;">
+    <ion-item *ngIf="stepOne" (click)="setgetCurrentLocation()">
+      <ion-label>
+        <h2>Step 1</h2>
+        <p>Click to set your current location</p>
+        <p>as your delivery address.</p>
+        <p>Or use the searchbar and pin</p>
+        <p>for a new one</p>
+      </ion-label>
+    </ion-item>
+    <ion-item *ngIf="stepTwo" >
+      <ion-label (click)="deliveryDetails()" >
+        <h2>Step 2</h2>
+        <p>Click to Add Delivery Information</p>
+      </ion-label>
+      
+      <ion-button *ngIf="stepTwo"   (click)="return()" fill="clear" style="position: absolute; top: 0; right: 0;">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+          </ion-button>
+    </ion-item>
+    <ion-item *ngIf="stepThree" >
+      <ion-label (click)="deliveryDetails()" >
+        <h2>Step 3</h2>
+        <p>Now you can move the pin to your</p>
+        <p>closest position</p>
+      </ion-label>
+      
+      <ion-button *ngIf="stepThree"   (click)="returnstepThree()" fill="clear" style="position: absolute; top: 0; right: 0;">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+          </ion-button>
+    </ion-item>
+  </ion-list>
+
+</div>
   
+
+
   </ion-col>
   
   
@@ -25,13 +62,4 @@
   </ion-content>
   
 
-  <ion-button (click)="getCurrentLocation()"  style="position: absolute; bottom: 2rem;right: 1rem;width: 100px;height: 100px" fill="clear">
-    <img  style="width: 100px;height: 100px;" [src]="next" alt="">
-  </ion-button>
-  
-
-  
-<ion-button (click)="checkoutIntructions()"  style="position: absolute; bottom: 2rem;left:  1rem; width: 100px;height: 100px;" fill="clear" >
-  <img  style="width: 100px;height: 100px;" [src]="img" alt="">
-</ion-button>
 
