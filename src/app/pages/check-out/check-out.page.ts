@@ -62,7 +62,7 @@ async deliveryDetails() {
 irMarcador(item) {
   if (item) {
     this.mapa.flyTo(
-      { center: item, zoom: 9 }
+      { center: item, zoom: 14 }
     )
 
   }
@@ -79,7 +79,7 @@ createMap(){
     container: this.divMapa.nativeElement,
     style: 'mapbox://styles/mapbox/light-v10', // Specify which map style to use
     center:[ -84.1165100,10.0023600],
-    zoom:14,
+    zoom:10,
       interactive:this.interactive
     });
 
@@ -90,7 +90,7 @@ newMarker.setLngLat([ -84.1165100,10.0023600])
     .setPopup(new mapboxgl.Popup({closeOnClick: false, closeButton: false}).setText("Start Point"))
     .addTo(this.mapa)
     .togglePopup()
-.addTo(this.mapa);
+
 this.getRoute()
 
 
