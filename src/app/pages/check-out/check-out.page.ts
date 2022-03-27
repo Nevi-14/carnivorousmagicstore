@@ -62,7 +62,7 @@ async deliveryDetails() {
 irMarcador(item) {
   if (item) {
     this.mapa.flyTo(
-      { center: item, zoom: 14 }
+      { center: item, zoom: 12 }
     )
 
   }
@@ -95,13 +95,7 @@ this.getRoute()
 
 
 this.mapa.addControl(new mapboxgl.NavigationControl());
-//mapa.addControl(new mapboxgl.FullscreenControl());
-this.mapa.addControl(new mapboxgl.GeolocateControl({
-  positionOptions: {
-      enableHighAccuracy: true
-  },
-  trackUserLocation: false
-}));
+
 const geocoder =   new MapboxGeocoder({
 accessToken: mapboxgl.accessToken,
 mapboxgl: mapboxgl,
@@ -142,6 +136,7 @@ this.coordinates.push(this.lngLat)
       this.lngLat  = [lng, lat];
 this.coordinates = [];
 this.coordinates.push(this.lngLat)
+this.returnstepThree();
       this.createMap();
       })
       
