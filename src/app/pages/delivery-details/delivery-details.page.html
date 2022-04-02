@@ -1,42 +1,91 @@
 
   <ion-toolbar>
-    <ion-title>Delivery Details</ion-title>
+    <ion-label  class="ion-text-uppercase ion-margin ion-text-wrap"  style="letter-spacing: 0.1rem; color: dark;font-size: 18px; font-weight: 500;">
+      Delivery Information
+       </ion-label>
   </ion-toolbar>
 
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding styled-elemets ">
 
-  <ion-grid >
-    <ion-row>
+  <ion-grid  >
+    <ion-row >
       <ion-col size="12" size-md="6">
-        <ion-label position="stacked">First Name</ion-label>
-       <ion-input placeholder="Name"></ion-input>
+  
+        <ion-item>
+          <ion-label position="stacked" >
+            <ion-icon slot="icon-only" name="person-outline"></ion-icon>First Name</ion-label>
+            <ion-input required    placeholder="First Name" name="name"
+            type="text"
+            ></ion-input>
+         
+        
+        </ion-item>
+  
+  
       </ion-col>
+  
       <ion-col size="12" size-md="6">
-        <ion-label position="stacked">Last Name</ion-label>
-        <ion-input placeholder="Last Name"></ion-input>
+  
+        <ion-item>
+          <ion-label position="stacked" >
+            <ion-icon slot="icon-only" name="person-outline"></ion-icon>Last Name</ion-label>
+            <ion-input required  placeholder="Last Name" name="lastname"
+            type="text"
+            ></ion-input>
+         
+        
+        </ion-item>
+  
+  
       </ion-col>
+  
       <ion-col size="12" size-md="6">
-        <ion-label position="stacked">Phone</ion-label>
-        <ion-input placeholder="Phone"></ion-input>
+  
+        <ion-item>
+          <ion-label position="stacked" >
+            <ion-icon slot="icon-only" name="call-outline"></ion-icon>Phone</ion-label>
+            <ion-input required    placeholder="Phone" name="phone"
+            type="tel"
+            ></ion-input>
+         
+        
+        </ion-item>
+  
+  
       </ion-col>
+    
       <ion-col size="12" size-md="6">
-        <ion-label position="stacked">Email</ion-label>
-        <ion-input placeholder="Email"></ion-input>
+  
+        <ion-item>
+          <ion-label position="stacked" >
+            <ion-icon slot="icon-only" name="mail-outline"></ion-icon>Email</ion-label>
+            <ion-input required    placeholder="Email" name="mail"
+            type="email"
+            ></ion-input>
+         
+        
+        </ion-item>
+  
+  
       </ion-col>
+    
       <ion-col size="12">
-        <ion-label position="stacked">Notes</ion-label>
-        <ion-textarea placeholder="Notes"></ion-textarea>
+  
+        <ion-item>
+          <ion-label position="stacked" >
+            <ion-icon slot="icon-only" name="pencil-outline"></ion-icon>Notes</ion-label>
+            <ion-textarea placeholder="Notes"></ion-textarea>
+         
+        
+        </ion-item>
+  
+  
       </ion-col>
-     
+  
+
   
   
-      <ion-col size="12" >
-        <ion-button  class="ion-margin"  expand="block"  color="dark">
-   Complete my order
-        </ion-button>
-  
-      </ion-col>
       <ion-col size="6"></ion-col>
     </ion-row>
   </ion-grid>
@@ -44,6 +93,12 @@
 <ion-fab  (click)="cerrarModal()" vertical="top" horizontal="end" slot="fixed">
   <ion-fab-button  color="danger">
     <ion-icon  name="close-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-fab   (click)="cerrarModal()"   vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button  color="dark">
+    <ion-icon  name="arrow-forward-outline"></ion-icon>
   </ion-fab-button>
 </ion-fab>
 

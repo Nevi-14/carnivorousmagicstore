@@ -4,7 +4,6 @@ import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { ModalController } from '@ionic/angular';
 import { CheckoutIntructionsPage } from '../checkout-intructions/checkout-intructions.page';
 import { DeliveryDetailsPage } from '../delivery-details/delivery-details.page';
-import { AlertasService } from '../../services/alertas.service';
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.page.html',
@@ -23,8 +22,7 @@ export class CheckOutPage implements OnInit, AfterViewInit {
   coordinates = [];
   features = [];
   constructor(
-    public modalCtrl: ModalController,
-    public alertasServcice:AlertasService
+    public modalCtrl: ModalController
   ) { }
 
   ngOnInit() {
@@ -101,7 +99,7 @@ const geocoder =   new MapboxGeocoder({
 accessToken: mapboxgl.accessToken,
 mapboxgl: mapboxgl,
 placeholder: 'Buscar zona',
-// Limit seach results to Costa .
+// Limit seach results to Costa Rica.
 countries: 'cr',
 })
 
@@ -166,35 +164,38 @@ this.getCurrentLocation();
 
  }
  getCurrentLocation(){
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
 
-  navigator.geolocation.getCurrentPosition(resp => {
 
+  navigator.geolocation.getCurrentPosition(this.success, this.error , options);
 
-this.lngLat  = [resp.coords.longitude,resp.coords.latitude];
-this.coordinates = [];
-this.coordinates.push(this.lngLat)
+}
+ success(pos) {
+  var crd = pos.coords;
+
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+
+  this.lngLat  = [crd.longitude , crd.latitude ];
+  this.coordinates = [];
+  this.coordinates.push(this.lngLat)
 this.createMap();
-this.stepOne = false;
-this.stepTwo = true;
 
-
-  },
-  err => {
-    console.log(err);
-  });
 }
 
+ error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
 async  getRoute() {
   // make a directions request using cycling profile
   // an arbitrary start will always be the same
   // only the end or destination will change
-  let waypoints = [];
-  let start = null;
-  let end = null;
-  let distance = null;
-  let duration =   null;
-
-
 
   let firstPart =  `https://api.mapbox.com/directions/v5/mapbox/driving/-84.1165100,10.0023600`
    let middle = '';
@@ -214,14 +215,13 @@ if(this.coordinates.length > 0){
     { method: 'GET' }
   );
   const json = await query.json();
-   waypoints = json.waypoints;
-   start = waypoints[0].name;
-   end = waypoints[1].name;
-   distance = (json.routes[0].distance / 1000).toFixed(2) + ' KM';
-   duration =   (json.routes[0].duration / 60).toFixed(2) + ' Minutes';
+  const waypoints = json.waypoints;
+  const start = waypoints[0];
+  const end = waypoints[1];
+  const distance = (json.routes[0].distance / 1000).toFixed(2) + ' KM';
+  const duration =   (json.routes[0].duration / 60).toFixed(2) + ' minutos';
 
   console.log(start , end, distance, duration, json.waypoints)
-
   const data = json.routes[0];
   const route = data.geometry.coordinates;
   let geojson :any = {
@@ -249,7 +249,6 @@ if(this.coordinates.length > 0){
       'line-opacity': 0.75
     }
 })
-this.alertasServcice.message('Distance', 'Start Point : ' + start  +' End Point ' + end + ' distance ' + distance + ' duration ' + duration)
 }
 
 }
