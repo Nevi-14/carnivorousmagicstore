@@ -36,8 +36,10 @@
 <ion-content force-overscroll="false">
   <ion-content force-overscroll="false">
 <div class="container">
-    <video autoplay loop muted src='assets/videos/video.mp4' >
-    </video>
+  <video #video preload="auto" autoplay loop muted>
+    <source src="assets/videos/video.mp4" type='video/mp4'>
+  </video>
+   
   <div class="pagina-centrada">
     <div class="contenido" >
      

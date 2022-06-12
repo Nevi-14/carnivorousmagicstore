@@ -18,6 +18,8 @@ export class HomePage implements OnInit {
   @ViewChild('exclusivos') exclusivos: IonSlides;
   @ViewChild('mapa') divMapa!:ElementRef;
   mapa!: mapboxgl.Map;
+  @ViewChild("video") video: ElementRef; // binds to #video in video.html
+videoElement: HTMLVideoElement
   lngLat: [number,number] = [ -84.0907237,9.9725816];
   interactive= true;
   imageURL = 'http://192.168.100.8:4000/show_images/?file=';
@@ -63,6 +65,12 @@ export class HomePage implements OnInit {
     public alertasService: AlertasService
   ) { }
 
+  
+  ionViewWillEnter() {
+    this.videoElement = this.video.nativeElement;
+    this.videoElement.play();
+ 
+  }
   ngAfterViewInit() {
     this.createMap();
     }
