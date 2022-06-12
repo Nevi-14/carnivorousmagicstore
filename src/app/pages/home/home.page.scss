@@ -81,3 +81,21 @@ preview-slides {
  ion-modal .ion-size-modal {
    height: 382px;
  }
+
+ @media(min-width: 768px){
+   .hero {
+      height: 50vh;
+   }
+  }
+  @media(max-width: 768px){
+   .container{
+      height: 40vh;
+      width: 100vw;
+      position: relative;
+      h1,h5{
+         font-size: 1.5rem;
+        background-color: rgba($color: #000000, $alpha: 0.3);
+      }
+   }
+ 
+}
