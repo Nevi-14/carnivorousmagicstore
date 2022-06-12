@@ -6,6 +6,7 @@ import { ImageModalPage } from '../image-modal/image-modal.page';
 import { ShoppingCartPage } from '../shopping-cart/shopping-cart.page';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import * as  mapboxgl from 'mapbox-gl';
+import { AlertasService } from 'src/app/services/alertas.service';
 
 @Component({
   selector: 'app-home',
@@ -58,7 +59,8 @@ export class HomePage implements OnInit {
   constructor(
     public http: HttpClient,
     private modalCtrl: ModalController, private changeDetectorRef: ChangeDetectorRef,
-    public storeService:StoreService
+    public storeService:StoreService,
+    public alertasService: AlertasService
   ) { }
 
   ngAfterViewInit() {
@@ -173,6 +175,9 @@ export class HomePage implements OnInit {
   }
 
   addToCart(producto){
+    this.alertasService.message('Carnivorousmagic','Ups, losentimos!. Nos encontramos trabajando en esta caracteristica');
+
+    return;
     this.storeService.myShoppingCart.push(producto)
     console.log(this.storeService.myShoppingCart)
   }
