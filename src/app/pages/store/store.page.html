@@ -12,15 +12,17 @@
           <ion-icon  size="large" name="chevron-forward-outline"></ion-icon>
         </ion-fab-button>
         <ion-slides  mode="ios" [options]="sliderOpts" class="preview-slides">
-          <ion-slide *ngFor="let p of products | async">
+          <ion-slide *ngFor="let p of storeService.products">
 
             <ion-card mode="ios" class="ion-text-center">
-              <img class="card-img" [src]="p.image" tappable (click)="openPreview(p.image)">
+              <img  class="card-img"  src="{{p.product_details[0].images.length > 0 ?  imageURL+ p.product_details[0].images[0].image : 'no-image' }}"   onerror="this.src='assets/image.svg'"  tappable (click)="openPreview(p.product_details[0].images.length > 0 ?  imageURL+ p.product_details[0].images[0].image : 'no-image')" >
+
+    
               <ion-card-content>
               <ion-label>
-                {{p.title.substring(0,15)}}...
+                {{p.name}}...
                 <p>
-                  {{p.price | currency:'USD'}}
+                  {{p.product_details[0].selling_price| currency:'₡'}}
                 </p>
               </ion-label>
        

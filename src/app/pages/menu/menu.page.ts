@@ -1,8 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, ModalController, Platform } from '@ionic/angular';
-import { ShoppingCartPage } from '../shopping-cart/shopping-cart.page';
-
 
 
 @Component({
@@ -21,26 +19,13 @@ export class MenuPage implements OnInit {
       icon:'home-outline',
       path:'/'
     },
-    {
-      title:'Products',
-      icon:'list-outline',
-      path:'/products'
-    },
+  
     {
       title:'Store',
       icon:'storefront-outline',
       path:'/store'
     },
-    {
-      title:'Users',
-      icon:'people-outline',
-      path:'/users'
-    },
-    {
-      title:'Orders',
-      icon:'bag-handle-outline',
-      path:'/orders'
-    },
+  
     {
       title:'Track my Order',
       icon:'search-outline',

@@ -2,15 +2,18 @@
 <ion-content class="ion-padding">
 <ion-grid>
   <ion-row class="ion-justify-content-center">
-    <ion-col size="12" size-sm="6" size-md="4" size-lg="3" size-xl="2" *ngFor="let p of products | async">
+    <ion-col size="12" size-sm="6" size-md="4" size-lg="3" size-xl="2" *ngFor="let p of storeService.products">
 
-      <ion-card>
-        <img [src]="p.image">
-        <ion-card-content>
+      <ion-card class="ion-text-center">
+      
+      <ion-avatar style="width:200px;height:200px;margin:0 auto;border-radius: 0;">
+        <img  src="{{p.product_details[0].images.length > 0 ?  imageURL+ p.product_details[0].images[0].image : 'no-image' }}"   onerror="this.src='assets/image.svg'" >
+      </ion-avatar>
+        <ion-card-content style="height: 8rem;">
         <ion-label>
-          {{p.title}}
+          {{p.name}}
           <p>
-            {{p.price | currency:'USD'}}
+            {{p.product_details[0].selling_price| currency:'₡'}}
           </p>
         </ion-label>
         </ion-card-content>

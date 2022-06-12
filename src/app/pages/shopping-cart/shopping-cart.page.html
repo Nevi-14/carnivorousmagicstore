@@ -8,12 +8,12 @@
 
     <ion-item *ngFor="let producto of storeService.myShoppingCart">
       <ion-avatar style="display:block; height: auto; width: auto;" slot="start">
-        <img style="height: 60px;width: 60px;" src="{{producto.image}}" />
+        <img style="height: 60px;width: 60px;" src="{{producto.product_details[0].images.length > 0 ?  imageURL+ producto.product_details[0].images[0].image : 'assets/image.svg' }}"   onerror="this.src='assets/image.svg'"  />
       </ion-avatar>
       <ion-label>
-        <h2>{{producto.title}}</h2>
+        <h2>{{producto.name}}</h2>
         <h3>I'm a big deal</h3>
-        <p> ${{producto.price}}</p>
+        <p>{{ producto.product_details[0].selling_price | currency:'₡'}}</p>
       </ion-label>
 
       <ion-button slot="end" fill="clear" (click)="deleteItem(producto)">

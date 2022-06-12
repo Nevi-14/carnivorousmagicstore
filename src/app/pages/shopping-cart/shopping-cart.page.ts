@@ -9,7 +9,7 @@ import { StoreService } from 'src/app/services/store.service';
   styleUrls: ['./shopping-cart.page.scss'],
 })
 export class ShoppingCartPage implements OnInit {
-
+  imageURL = 'http://192.168.100.8:4000/show_images/?file=';
   constructor(
     public modalCtrl: ModalController,
     public router: Router,

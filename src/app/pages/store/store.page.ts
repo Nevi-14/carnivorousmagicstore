@@ -14,6 +14,7 @@ import { CheckoutIntructionsPage } from '../checkout-intructions/checkout-intruc
 })
 export class StorePage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
+  imageURL = 'http://192.168.100.8:4000/show_images/?file=';
   sliderOpts = {
     zoom: false,
     slidesPerView: 4,
@@ -59,8 +60,9 @@ export class StorePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.storeService.syncProducts('http://192.168.100.8:4000/api/products');
 
-    this.products = this.http.get('https://fakestoreapi.com/products');
+  //  this.products = this.http.get('https://fakestoreapi.com/products');
   }
   async shoppingCart() {
     const modal = await this.modalCtrl.create({

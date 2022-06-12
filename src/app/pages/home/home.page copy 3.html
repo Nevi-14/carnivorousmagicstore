@@ -1,0 +1,280 @@
+<ion-content force-overscroll="false">
+  <ion-content force-overscroll="false">
+<div class="container">
+    <video autoplay loop muted src='assets/videos/video.mp4' >
+    </video>
+  <div class="pagina-centrada">
+    <div class="contenido">
+      <h1>Carnivorous Magic</h1>
+      <h5>Plantas Carnivoras y Mas</h5>
+      <div class="botonContenedor">
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<ion-row style="margin-top: 5rem;">
+    <ion-col size="12" class="ion-padding ion-text-center">
+        <h3 class="ion-text-uppercase"><strong>Productos Nuevos</strong></h3>
+        <ion-fab-button   size="small"  color="dark"   class="custom-button" style="position: absolute;top: 50%;left: 0.5rem;z-index: 2;"  (click)="slidePrevNuevos()" >
+          <ion-icon  size="large"  name="chevron-back-outline"></ion-icon>
+        </ion-fab-button>
+  
+        <ion-fab-button  size="small" color="dark" class="custom-button" style="position: absolute;top: 50%;right:0.5rem;z-index: 2;" (click)="slideNextNuevos()" >
+          <ion-icon  size="large" name="chevron-forward-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-col>
+    <ion-col size="12" class="ion-padding">
+    
+      <ion-slides #nuevos mode="ios" [options]="sliderOpts" class="preview-slides">
+        <ion-slide *ngFor="let p of storeService.products; let i = index;">
+
+          <ion-card>
+
+            <img class="card-img"  src="{{p.product_details[0].images.length > 0 ?  imageURL+ p.product_details[0].images[0].image : 'assets/img/no-image.png' }}"   onerror="this.src='assets/image.svg'" alt="ion">
+            <ion-card-header>
+              <ion-card-title> {{p.name}}...</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+       {{p.long_description}}
+            </ion-card-content>
+            <ion-footer>
+              <ion-row>
+                <ion-col center text-center>
+               <ion-label>
+                <h5><ion-badge color="dark" mode="ios">Precio</ion-badge></h5>
+                {{p.product_details[0].selling_price| currency:'₡'}}
+               </ion-label>
+                </ion-col>
+        
+                <ion-col center text-center>
+
+                  <ion-button   id="hover-button-{{i}}" fill="clear" >
+                    <ion-badge color="warning" mode="ios">S</ion-badge>
+                    <ion-icon size="large" color="dark" name="chevron-down-outline"></ion-icon>
+                    </ion-button>
+
+                  <ion-modal trigger="hover-button-{{i}}" triggerAction="hover" class="ion-size-modal">
+                    <ng-template>
+                      <ion-content class="ion-padding">
+                        <ion-list>
+                          <ion-list-header>
+                          <ion-badge color="warning" class="ion-text-uppercase" mode="ios"> {{p.name}}</ion-badge>
+                          </ion-list-header>
+                          <ion-item  >
+                           
+                            <ion-label>S</ion-label>
+                            <ion-icon slot="end" color="primary" ></ion-icon>
+                          </ion-item>
+                          <ion-item  >
+                         
+                            <ion-label>M</ion-label>
+                            <ion-icon slot="end" color="primary"></ion-icon>
+                          </ion-item>
+                          <ion-item  >
+                          
+                            <ion-label>L</ion-label>
+                            <ion-icon slot="end" color="primary" ></ion-icon>
+                            
+                          </ion-item>
+                        </ion-list>
+                      </ion-content>
+                    </ng-template>
+                  </ion-modal>
+                </ion-col>
+
+                <ion-col center text-center>
+                  <ion-button (click)="addToCart(p)" fill="clear" color="dark">
+                    <ion-icon size="large" color="dark" name="cart-outline"></ion-icon>
+                  </ion-button>
+                </ion-col>
+
+              </ion-row>
+            </ion-footer>
+          </ion-card>
+
+
+     
+        </ion-slide>
+      </ion-slides>
+
+    </ion-col>
+  </ion-row>
+ 
+<ion-row style="margin-top: 5rem;">
+  <ion-col size="12" class="ion-padding ion-text-center">
+      <h3 class="ion-text-uppercase"><strong>Productos Exclusivos</strong></h3>
+      <ion-fab-button   size="small"  color="dark"   class="custom-button" style="position: absolute;top: 50%;left: 0.5rem;z-index: 2;"  (click)="slidePrevExclusivos()" >
+        <ion-icon  size="large"  name="chevron-back-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-button  size="small" color="dark" class="custom-button" style="position: absolute;top: 50%;right:0.5rem;z-index: 2;" (click)="slideNextExclusivos()" >
+        <ion-icon  size="large" name="chevron-forward-outline"></ion-icon>
+      </ion-fab-button>
+  </ion-col>
+  <ion-col size="12" class="ion-padding">
+  
+    <ion-slides #exclusivos mode="ios" [options]="sliderOpts" class="preview-slides">
+      <ion-slide *ngFor="let p of storeService.products; let i = index;">
+
+        <ion-card>
+
+          <img class="card-img"  src="{{p.product_details[0].images.length > 0 ?  imageURL+ p.product_details[0].images[0].image : 'assets/img/no-image.png' }}"   onerror="this.src='assets/image.svg'" alt="ion">
+          <ion-card-header>
+            <ion-card-title> {{p.name}}...</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+     {{p.long_description}}
+          </ion-card-content>
+          <ion-footer>
+            <ion-row>
+              <ion-col center text-center>
+             <ion-label>
+              <h5><ion-badge color="dark" mode="ios">Precio</ion-badge></h5>
+              {{p.product_details[0].selling_price| currency:'₡'}}
+             </ion-label>
+              </ion-col>
+      
+              <ion-col center text-center>
+
+                <ion-button   id="hover-button-{{i}}" fill="clear" >
+                  <ion-badge color="warning" mode="ios">S</ion-badge>
+                  <ion-icon size="large" color="dark" name="chevron-down-outline"></ion-icon>
+                  </ion-button>
+
+                <ion-modal trigger="hover-button-{{i}}" triggerAction="hover" class="ion-size-modal">
+                  <ng-template>
+                    <ion-content class="ion-padding">
+                      <ion-list>
+                        <ion-list-header>
+                        <ion-badge color="warning" class="ion-text-uppercase" mode="ios"> {{p.name}}</ion-badge>
+                        </ion-list-header>
+                        <ion-item  >
+                         
+                          <ion-label>S</ion-label>
+                          <ion-icon slot="end" color="primary" ></ion-icon>
+                        </ion-item>
+                        <ion-item  >
+                       
+                          <ion-label>M</ion-label>
+                          <ion-icon slot="end" color="primary"></ion-icon>
+                        </ion-item>
+                        <ion-item  >
+                        
+                          <ion-label>L</ion-label>
+                          <ion-icon slot="end" color="primary" ></ion-icon>
+                          
+                        </ion-item>
+                      </ion-list>
+                    </ion-content>
+                  </ng-template>
+                </ion-modal>
+              </ion-col>
+
+              <ion-col center text-center>
+                <ion-button (click)="addToCart(p)" fill="clear" color="dark">
+                  <ion-icon size="large" color="dark" name="cart-outline"></ion-icon>
+                </ion-button>
+              </ion-col>
+
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+
+
+   
+      </ion-slide>
+    </ion-slides>
+
+  </ion-col>
+</ion-row>
+  
+<ion-footer class="ion-no-border">
+<ion-grid >
+  <ion-row>
+    <ion-col size="12">
+      <h3 class="ion-margin"><strong>Terminos y Condiciones</strong></h3>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui voluptate itaque facere iste deserunt maxime animi quae, aspernatur sapiente voluptates vero libero, cumque ad, sequi maiores repellat alias error! Debitis.</p>
+    </ion-col>
+    <ion-col size="12" >
+      <h3 class="ion-margin"><strong>Sobre Nosotros</strong></h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores unde expedita dolorum repellat nisi nobis culpa quisquam ullam omnis libero iure nam temporibus tempora eaque itaque quae, eius molestias veniam.</p>
+      
+    </ion-col>
+
+    <ion-col size="12" size-md="6">
+      
+      <h3 class="ion-margin"><strong>Ubicación</strong></h3>
+
+      <div  #mapa  [ngStyle]="{
+        'height': '100%',
+        'width': '100%',
+        'max-height':'400px'
+      }" class="mapa">
+      </div>
+      <p>Santo Domingo, Heredia</p>
+
+    </ion-col>
+
+
+    <ion-col size="12" size-md="6">
+<ion-row>
+  <ion-col size="12">
+    <h3 class="ion-margin"><strong>Contactanos</strong></h3>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col size="12" size-md="6">
+    <ion-item lines="none">
+      <ion-label>Telefono : +506 8358 9357</ion-label>
+    </ion-item> 
+  </ion-col>
+  <ion-col size="12" size-md="6">
+    <ion-item lines="none">
+      <ion-label>Correo : carnivorousmagic@gmail.com </ion-label>
+    </ion-item>
+  
+  </ion-col>
+</ion-row>
+
+
+      <h3 class="ion-margin"><strong>Horario de Atención</strong></h3>
+      <ion-list>
+        <ion-item>
+          <ion-label>Lunes : 08:00 AM - 5:00 PM</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Martes : 08:00 AM - 5:00 PM</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Miercoles : 08:00 AM - 5:00 PM</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Jueves : 08:00 AM - 5:00 PM</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Viernes : 08:00 AM - 5:00 PM</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Sabado : Cerrado</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Domingo : Cerrado</ion-label>
+        </ion-item>
+      </ion-list>
+      
+    </ion-col>
+
+  </ion-row>
+</ion-grid>
+</ion-footer>
+  </ion-content>
+  
+  <ion-fab *ngIf="storeService.myShoppingCart.length > 0" (click)="shoppingCart()"  style="margin-top: 2rem;"  vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button  color="dark">
+      <ion-icon size="large"  name="cart-outline"></ion-icon>
+      
+    </ion-fab-button>
+    <ion-badge style="position: absolute;top: -10px;left: -20px;" color="primary" mode="ios">{{storeService.myShoppingCart.length}}</ion-badge>
+  </ion-fab>

@@ -8,64 +8,31 @@
 
   </ion-toolbar>
 </ion-header>
+<ion-toolbar translucent>
+  <ion-row class="header ion-align-items-center">
 
-<ion-row class="header ion-align-items-center">
-
-  <ion-col size="2">
-    <ion-avatar  style="height: 30px;width: 30px;" class="ion-margin">
-      <img src="assets/img/store.svg">
-    </ion-avatar>
- 
+    <ion-col size="1">
+      <ion-avatar  style="height: 30px;width: 30px;" class="ion-margin">
+        <img src="assets/img/store.svg">
+      </ion-avatar>
+  
+    </ion-col>
+  <ion-col size="6" class="ion-text-left">
+  <h3><strong>Carnivorous Magic</strong></h3>
   </ion-col>
-  <ion-col size="8" class="ion-text-left">
-
-    <ion-button fill="clear" color="dark" routerLink="/" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
-      Home
-     </ion-button>
-
-
-    
-<ion-button #inicioBtn (mouseenter)="dropdown=true" (mouseleave)="hideDropdown($event)" fill="clear" class="dropdown-btn" color="dark" routerLink="/products" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
-  Products
-
-</ion-button>
-
-
-<div *ngIf="dropdown" class="dropdown" (mouseleave)="dropdown=false" #dropdownbox>
-
-
-<ion-item button  (click)="dropdown = false" lines="none"  routerLink="/products" [queryParams]="{category:'popular'}">
-  <ion-label>Popular</ion-label>
-</ion-item>
-<ion-item button  (click)="dropdown = false" lines="none"  routerLink="/products" [queryParams]="{category:'cloth'}">
-  <ion-label>Cloth</ion-label>
-</ion-item>
-<ion-item button  (click)="dropdown = false" lines="none"  routerLink="/products" [queryParams]="{category:'gadgets'}">
-  <ion-label>Gadgets</ion-label>
-</ion-item>
-
-</div>
-<ion-button fill="clear" color="dark" routerLink="/store" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
-  Store
- </ion-button>
-<ion-button fill="clear" color="dark" routerLink="/users" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
-  Users
- </ion-button>
-
- <ion-button fill="clear" color="dark" routerLink="/orders" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
-  Orders
- </ion-button>
-
- <ion-button fill="clear" color="dark" routerLink="/track-order" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
-  Track Order
- </ion-button>
-
-
-<ion-button fill="clear" color="dark" routerLink="/about" routerDirection="root" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact:true}">
-  About
- </ion-button>
-
-
+  <ion-col size="5" style="display: flex;justify-content:end">
+    <ion-buttons >
+      <ion-button  style="height:40px;width:50px ;">
+      <ion-avatar  style="height:40px;width:40px ;">
+        <img style="height:35px;width:35px ;" src="assets/img/facebook.svg" />
+      </ion-avatar>
+      </ion-button>
+      <ion-button  style="height:40px;width:50px ;">
+        <ion-avatar  style="height:40px;width:40px ;">
+          <img style="height:35px;width:35px ;" src="assets/img/whatsapp.svg" />
+        </ion-avatar>
+        </ion-button>
+    </ion-buttons>
   </ion-col>
-
-</ion-row>
+  </ion-row>
+</ion-toolbar>
