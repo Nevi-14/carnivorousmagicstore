@@ -66,12 +66,15 @@ videoElement: HTMLVideoElement
   ) { }
 
   
-  ionViewWillEnter() {
-    this.videoElement = this.video.nativeElement;
+  ionViewDidEnter() {
+/**
+ *    this.videoElement = this.video.nativeElement;
     this.videoElement.play();
+ */
  
   }
   ngAfterViewInit() {
+ 
     this.createMap();
     }
   ngOnInit() {

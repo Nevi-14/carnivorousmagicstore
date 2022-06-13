@@ -1,15 +1,13 @@
 <ion-toolbar translucent>
   <ion-row class="header ion-align-items-center">
 
-    <ion-col size="2">
+    <ion-col size="12" size-md="8" style="display: flex;">
       <ion-avatar  style="height: 30px;width: 30px;" class="ion-margin">
         <img src="assets/img/store.svg">
       </ion-avatar>
-  
+      <h3><strong>Carnivorous Magic</strong></h3>
     </ion-col>
-  <ion-col size="10" size-md="6" class="ion-text-left">
-  <h3><strong>Carnivorous Magic</strong></h3>
-  </ion-col>
+
   <ion-col size="12" size-md="4" style="display: flex;justify-content:end">
     <ion-buttons >
       <ion-button  style="height:40px;width:50px ;">
@@ -36,8 +34,8 @@
 <ion-content force-overscroll="false">
   <ion-content force-overscroll="false">
 <div class="container">
-  <video #video preload="auto" autoplay loop muted>
-    <source src="assets/videos/video.mp4" type='video/mp4'>
+  <video #video loop muted autoplay oncanplay="this.play()" onloadedmetadata="this.muted = true" >
+    <source src="assets/videos/video.mp4" type='video/mp4' allow='autoplay'>
   </video>
    
   <div class="pagina-centrada">
